@@ -1,3 +1,4 @@
+/* Default APP js 
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -18,3 +19,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+*/
+
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
+import { GNavigator } from './navigation/gnavigator';
+import { persistor, store } from './redux/configureStore';
+
+export default function AppForReactNative() {
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <NavigationContainer>
+          <GNavigator />
+        </NavigationContainer>
+      </PersistGate>
+    </Provider>
+  );
+}
