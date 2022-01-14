@@ -7,12 +7,13 @@ const { PRIMARY_COLOR, SECONDARY_COLOR, BORDER_COLOR } = colors
 
 export default function WeatherDetails({ currentWeather, currentWeatherDetails, unitsSystem }) {
     const {
-        main: { feels_like, humidity, pressure },
-        wind: { speed },
+        current: { feels_like, humidity, pressure, wind_speed },
+        //wind: { speed },
     } = currentWeatherDetails
 
-    const windSpeed = unitsSystem === 'metric' ? `${speed} m/s` : `${speed} miles/h`
-
+    const windSpeed = unitsSystem === 'metric' ? `${Math.round(wind_speed * 10) / 10} m/s` : `${Math.round(wind_speed * 10) / 10} miles/h`
+    const tempUnit = unitsSystem === 'metric' ? "C" : "F"
+    
     return (
         <View style={styles.weatherDetails}>
             <View style={styles.weatherDetailsRow}>
@@ -21,7 +22,7 @@ export default function WeatherDetails({ currentWeather, currentWeatherDetails, 
                         <FontAwesome5 name="temperature-low" size={25} color={PRIMARY_COLOR} />
                         <View style={styles.weatherDetailsItems}>
                             <Text>Ressentie :</Text>
-                            <Text style={styles.textSecondary}>{feels_like} °</Text>
+                            <Text style={styles.textSecondary}>{Math.round(feels_like)} °{tempUnit}</Text>
                         </View>
                     </View>
                 </View>

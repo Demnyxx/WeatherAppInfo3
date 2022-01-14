@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, Platform } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
+import {colors} from '../utils/index'
 
 export default function UnitsPicker({ unitsSystem, setUnitsSystem }) {
     return (
@@ -11,8 +12,8 @@ export default function UnitsPicker({ unitsSystem, setUnitsSystem }) {
                 mode="dropdown"
                 itemStyle={{ fontSize: 12 }}
             >
-                <Picker.Item label="C°" value="metric" />
-                <Picker.Item label="F°" value="imperial" />
+                <Picker.Item label="°C" value="metric" style={{color: colors.PRIMARY_COLOR, fontSize: 25}} />
+                <Picker.Item label="°F" value="imperial" style={{color: colors.PRIMARY_COLOR, fontSize: 25, fontWeight: 'bold'}} />
             </Picker>
         </View>
     )
